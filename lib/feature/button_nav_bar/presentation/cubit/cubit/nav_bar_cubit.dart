@@ -1,4 +1,5 @@
 import 'package:appfoud/feature/button_nav_bar/presentation/screen/nav_bar.dart';
+import 'package:appfoud/feature/my_favorate/presetation/screen/favorate.dart';
 import 'package:appfoud/feature/presentation/screnn/foud_home.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -10,7 +11,7 @@ class NavBarCubit extends Cubit<NavBarState> {
   NavBarCubit() : super(NavBarInitial());
 
   int currentindex = 0;
-  List<Widget> list = [FoudHome(), SizedBox()];
+  List<Widget> list = [FoudHome(), Favorate()];
 
   void getindex(int index) {
     currentindex = index;

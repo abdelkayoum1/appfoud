@@ -2,16 +2,24 @@ import 'package:appfoud/feature/foud_detail_by_category/core/api_service_by_cate
 import 'package:appfoud/feature/foud_detail_by_category/home/foud_detail_by_category/foud_detail_by_category_impl.dart';
 import 'package:appfoud/feature/foud_detail_by_category/presentation/cubit/foud_detail_by_category.dart';
 import 'package:appfoud/feature/foud_detail_by_category/presentation/cubit/foud_detail_by_category_cubit.dart';
+import 'package:appfoud/feature/my_favorate/home/models/favorate_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 
-class FouddetailById extends StatelessWidget {
+class FouddetailById extends StatefulWidget {
   final dynamic id;
   const FouddetailById({super.key, required this.id});
 
   @override
+  State<FouddetailById> createState() => _FouddetailByIdState();
+}
+
+class _FouddetailByIdState extends State<FouddetailById> {
+  @override
   Widget build(BuildContext context) {
+    final box = Hive.box<FavorateModel>('favoraties');
     return BlocProvider(
       create: (context) {
         final cubit = FoudDetailByCategoryCubit(
@@ -19,7 +27,7 @@ class FouddetailById extends StatelessWidget {
             apiservicebycategory: ApiServiceByCategory(dio: Dio()),
           ),
         );
-        cubit.getfoudeatilbyid(idd: id);
+        cubit.getfoudeatilbyid(idd: widget.id);
         return cubit;
       },
       child: Scaffold(
@@ -141,12 +149,41 @@ class FouddetailById extends StatelessWidget {
                               border: Border.all(color: Colors.black),
                               color: Colors.white,
                             ),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.favorite_border,
-                                color: Colors.red,
-                              ),
+                            child: StatefulBuilder(
+                              builder: (context, setState) {
+                                bool isfav = box.containsKey(
+                                  state.meal.first.idMeal,
+                                );
+                                return IconButton(
+                                  onPressed: () {
+                                    if (isfav) {
+                                      box.delete(state.meal.first.idMeal);
+                                    } else {
+                                      box.put(
+                                        state.meal.first.idMeal,
+                                        FavorateModel(
+                                          idmeal: state.meal.first.idMeal
+                                              .toString(),
+                                          strmeal: state.meal.first.strMeal
+                                              .toString(),
+                                          strmealthumb: state
+                                              .meal
+                                              .first
+                                              .strMealThumb
+                                              .toString(),
+                                        ),
+                                      );
+                                    }
+                                    setState(() {});
+                                  },
+                                  icon: Icon(
+                                    isfav
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: Colors.red,
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],

@@ -20,7 +20,7 @@ class ContainerlistviewsItem extends StatelessWidget {
           return GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: meal.length,
+            itemCount: state.foudetail.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10,

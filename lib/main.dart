@@ -1,3 +1,4 @@
+import 'package:appfoud/core/approute.dart';
 import 'package:appfoud/feature/presentation/screnn/foud_home.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: FoudHome(),
+      // home: FoudHome(),
+      routerConfig: Approute.router,
     );
   }
 }

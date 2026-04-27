@@ -5,11 +5,12 @@ import 'package:appfoud/feature/foud_detail_by_category/presentation/screen/foud
 import 'package:appfoud/feature/login/screen/login_home.dart';
 import 'package:appfoud/feature/presentation/screnn/foud_home.dart';
 import 'package:appfoud/feature/sign%20up/screen/singn.dart';
+import 'package:appfoud/splash.dart';
 import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
 class Approute {
-  static const loginhome = '/';
+  static const loginhome = '/login';
   static const navbar = '/navbar';
   //static const homefoud = '/homefoud';
   static const fouddetail = '/foudetail';
@@ -18,6 +19,7 @@ class Approute {
   static final router = GoRouter(
     routes: [
       GoRoute(path: navbar, builder: (context, state) => NavBar()),
+      GoRoute(path: '/', builder: (context, state) => Splash()),
 
       // GoRoute(path: homefoud, builder: (context, state) => FoudHome()),
       GoRoute(

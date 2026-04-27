@@ -27,7 +27,7 @@ class Stackimage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'مرحبا بك في المطعم',
+                  'Cs Academy',
                   style: TextStyle(color: Colors.yellow, fontSize: 32),
                 ),
                 Text(

@@ -154,6 +154,9 @@ class _FouddetailByIdState extends State<FouddetailById> {
                                 bool isfav = box.containsKey(
                                   state.meal.first.idMeal,
                                 );
+                                if (box.isEmpty) {
+                                  return Center(child: Text('not foud'));
+                                }
                                 return IconButton(
                                   onPressed: () {
                                     if (isfav) {

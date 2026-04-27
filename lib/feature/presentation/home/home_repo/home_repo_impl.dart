@@ -5,7 +5,7 @@ import 'package:appfoud/feature/presentation/home/modell/foud_model/category.dar
 import 'package:appfoud/feature/presentation/home/modell/foud_model/foud_model.dart';
 import 'package:dartz/dartz.dart';
 
-class HomeRepoImpl extends HomeRepo {
+class HomeRepoImpl extends HomeRepoo {
   final Apiservice apiserver;
 
   HomeRepoImpl({required this.apiserver});
